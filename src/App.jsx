@@ -1,9 +1,10 @@
-import Home from './test';
+import Home from './dashboard';
+import Login from './login'
 function App() {
 
   return (
     <>
-      <Home />
+      <Login />
     </>
   )
 }
