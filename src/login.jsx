@@ -4,9 +4,10 @@ export default function Login() {
     return (
         <>
             <center>
-                <p className="text-center"><button>{"<="}</button> Back to Home</p>
-                <div className="md:h-[450px]  md:w-[500px] h-auto w-auto rounded-2xl shadow-xl border-[1px] border-gray-300 shadow-gray-200 text-black md:mt-40 p-5 bg-white">
-                    <h1 className=" text-3xl font-bold">Welcome Back</h1><br/>
+                <p className="text-center text-start  mt-10 w-[500px] ">  <a href="login.jsx" className="hover:text-blue-500 text-gray-700 font-semibold"><button>{"<="}</button> Back to Home</a>   </p><br></br>
+
+                <div className="md:h-[450px]  md:w-[500px] h-auto w-auto rounded-2xl shadow-xl border-[1px] border-gray-300 shadow-gray-200 text-black p-5 bg-white">
+                    <h1 className=" text-3xl font-bold">Welcome Back</h1><br />
                     <h4 className="text-[18px]">Sign in to continue your journey</h4><br></br>
 
                     <div className="text-start ml-5 ">
@@ -25,6 +26,7 @@ export default function Login() {
                     <br /> <br />
                     <p>Don't have an account? <a href="login.jsx" className="hover:text-blue-500 text-blue-700 font-semibold">Create Account</a></p>
                 </div>
+
             </center>
         </>
 
