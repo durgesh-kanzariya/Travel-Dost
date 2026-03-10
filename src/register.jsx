@@ -5,15 +5,12 @@ export default function Reg() {
         <>
             <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-sky-50 via-white to-teal-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 px-4 transition-colors duration-300">
                 <div className="w-full max-w-md">
-
-                  
-
                     <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-8 shadow-xl dark:shadow-slate-900/50">
                         <div className="flex flex-col items-center gap-2">
                             <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Create Account</h1>
                             <p className="text-slate-600 dark:text-slate-400">Join us to explore the world safely</p>
                         </div>
-
+                    
                         <form className="mt-8 flex flex-col gap-5">
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="flex flex-col gap-2">
@@ -92,9 +89,7 @@ export default function Reg() {
 
                         <p className="mt-6 text-center text-sm text-slate-600 dark:text-slate-400">
                             Already have an account?{' '}
-                            {/* <Link to="/login" className="font-medium text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300">
-                                Sign In
-                            </Link> */}
+                            <a href="register.jsx" className='text-sky-600 hover:text-sky-700'>Sign In</a>
                         </p>
                     </div>
                 </div>
