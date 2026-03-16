@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 export default function Reg() {
     return (
-        <>
+        <>  
             <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-sky-50 via-white to-teal-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 px-4 transition-colors duration-300">
                 <div className="w-full max-w-md">
                     <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-8 shadow-xl dark:shadow-slate-900/50">
@@ -25,6 +25,8 @@ export default function Reg() {
                                         />
                                     </div>
                                 </div>
+
+
 
                                 <div className="flex flex-col gap-2">
                                     <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Last Name</label>
