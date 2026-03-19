@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
+import { Shield, Hospital, MapPin, Navigation } from 'lucide-react'
+import api from '../../shared/services/api'
 
 const CACHE_KEY = 'traveldost_safezones_cache'
 const CACHE_RADIUS_KM = 2
@@ -92,8 +94,34 @@ function RecenterAutomatically({ lat, lng }) {
 }
 
 export function InteractiveMap({ lat, lng }) {
-    const [safeZones] = useState([])
+    const [safeZones, setSafeZones] = useState([])
+    const [loading, setLoading] = useState(false)
 
+    useEffect(() => {
+        if (!lat || !lng) return
+
+        const fetchSafeZones = async () => {
+            const cached = getCachedData(lat, lng)
+            if (cached) {
+                setSafeZones(cached)
+                return
+            }
+
+            setLoading(true)
+            try {
+                const res = await api.post('/map/safezones', { lat, lng })
+                const data = res.data
+                setSafeZones(data)
+                setCachedData(lat, lng, data)
+            } catch (err) {
+                console.error("Failed to fetch safe zones:", err)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchSafeZones()
+    }, [lat, lng])
 
     return (
         <div className="relative h-96 w-full overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 shadow-inner [&_.leaflet-tile-pane]:dark:invert-[.9] [&_.leaflet-tile-pane]:dark:hue-rotate-180 [&_.leaflet-tile-pane]:dark:contrast-75">
@@ -137,6 +165,15 @@ export function InteractiveMap({ lat, lng }) {
 
             </MapContainer>
 
+            {/* OVERLAY LOADING INDICATOR */}
+            {loading && (
+                <div className="absolute top-4 right-4 z-[400] bg-white/90 dark:bg-slate-900/90 backdrop-blur px-3 py-1.5 rounded-full text-xs font-medium text-slate-600 dark:text-slate-300 shadow-sm flex items-center gap-2">
+                    <div className="h-3 w-3 animate-spin rounded-full border-2 border-sky-600 dark:border-sky-400 border-t-transparent"></div>
+                    Scanning Safe Zones...
+                </div>
+            )}
+
+            {/* LEGEND */}
             <div className="absolute bottom-4 left-4 z-[400] bg-white/90 dark:bg-slate-900/90 backdrop-blur p-2 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 shadow-sm border border-slate-200 dark:border-slate-700">
                 <div className="flex items-center gap-2 mb-1">
                     <div className="w-3 h-3 rounded-full bg-red-600 border border-white dark:border-slate-800 shadow-sm"></div>
