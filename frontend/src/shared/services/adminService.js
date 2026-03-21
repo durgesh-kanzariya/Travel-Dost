@@ -1,34 +1,41 @@
-import { STATIC_USERS, STATIC_GUIDES, STATIC_ADMIN_STATS } from '../data/staticData';
+import api from './api';
 
-let _users = [...STATIC_USERS];
-let _guides = [...STATIC_GUIDES];
+// Get All Users
+export const getAllUsers = async () => {
+    const response = await api.get('/admin/users');
+    return response.data;
+}
 
-// Stats
-export const getSystemStats = async () => ({ ...STATIC_ADMIN_STATS });
-
-// Users
-export const getAllUsers = async () => [..._users];
-
+// Delete User
 export const deleteUser = async (userId) => {
-    _users = _users.filter((u) => u.id !== userId);
-    return { message: 'Deleted' };
-};
+    const response = await api.delete(`/admin/users/${userId}`);
+    return response.data;
+}
 
-// Guides (admin view)
-export const getAllGuidesAdmin = async () => [..._guides];
+// Get System Stats (For Dashboard)
+export const getSystemStats = async () => {
+    const response = await api.get('/admin/stats');
+    return response.data;
+}
+
+// --- GUIDE MANAGEMENT ---
+
+export const getAllGuidesAdmin = async () => {
+    const response = await api.get('/admin/guides');
+    return response.data;
+}
 
 export const createGuide = async (data) => {
-    const newGuide = { id: Date.now(), ...data };
-    _guides.push(newGuide);
-    return newGuide;
-};
+    const response = await api.post('/admin/guides', data);
+    return response.data;
+}
 
 export const updateGuide = async (id, data) => {
-    _guides = _guides.map((g) => (g.id === id ? { ...g, ...data } : g));
-    return _guides.find((g) => g.id === id);
-};
+    const response = await api.put(`/admin/guides/${id}`, data);
+    return response.data;
+}
 
 export const deleteGuide = async (id) => {
-    _guides = _guides.filter((g) => g.id !== id);
-    return { message: 'Deleted' };
-};
+    const response = await api.delete(`/admin/guides/${id}`);
+    return response.data;
+}
