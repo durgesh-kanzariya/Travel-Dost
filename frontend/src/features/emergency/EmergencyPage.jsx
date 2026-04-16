@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Shield, Ambulance, Flame, RefreshCw, Search, ChevronDown, MapPin, Phone, Landmark, AlertTriangle, AlertOctagon } from 'lucide-react'
-import { useEmergency } from './useEmergency'
+import { useEmergency } from './hooks/useEmergency'
 import { DashboardLayout } from '../../components/layout/DashboardLayout'
 import { Breadcrumbs } from '../../components/layout/Breadcrumbs'
 

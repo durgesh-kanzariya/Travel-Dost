@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { getAllGuides, getGuideByCountry, getCachedLocation, detectAndCacheLocation } from '../../shared/services'
+import { getAllGuides, getGuideByCountry, getCachedLocation, detectAndCacheLocation } from '../../../shared/services'
 
 export function useEmergency() {
     const [selectedCountry, setSelectedCountry] = useState('India')
@@ -11,7 +11,7 @@ export function useEmergency() {
     const fetchEmergencyData = useCallback(async (countryName) => {
         try {
             setLoading(true)
-            const data = await getGuideByCountry(countryName);
+            const data = await getGuideByCountry(countryName)
             setActiveData({
                 police: data.police_number || '112',
                 ambulance: data.ambulance_number || '112',
@@ -29,12 +29,10 @@ export function useEmergency() {
         }
     }, [])
 
-    // Fetch all countries list on mount
     useEffect(() => {
         getAllGuides().then(setAllCountries).catch(console.error)
     }, [])
 
-    // Detect location and load emergency data on mount
     useEffect(() => {
         let cancelled = false
 
@@ -47,7 +45,6 @@ export function useEmergency() {
                     cachedLocation = await detectAndCacheLocation()
                 }
                 if (cachedLocation && cachedLocation.country) {
-                    // For emergency, we use the country directly, not language
                     if (!cancelled) {
                         await fetchEmergencyData(cachedLocation.country)
                     }
@@ -68,7 +65,6 @@ export function useEmergency() {
         return () => { cancelled = true }
     }, [fetchEmergencyData])
 
-    // Manual location refresh function
     const refreshLocation = useCallback(async (forceRefresh = false) => {
         let cancelled = false
         setLoading(true)
@@ -102,7 +98,7 @@ export function useEmergency() {
         allCountries,
         loading,
         locationError,
-        refreshLocation,
+        detectLocation: refreshLocation,
         fetchEmergencyData
-    }
+    };
 }

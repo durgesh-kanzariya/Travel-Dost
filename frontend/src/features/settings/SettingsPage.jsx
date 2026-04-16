@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Bell, Lock, User, Save, AlertCircle } from 'lucide-react'
 import { DashboardLayout, Breadcrumbs } from '../../components/layout'
-import { updateUserProfile, changePassword } from '../../shared/services/authService'
+import { updateUserProfile, changePassword } from '../auth/api/authApi'
 import { SearchableSelect } from '../../components/ui'
 
 const LANGUAGES = [

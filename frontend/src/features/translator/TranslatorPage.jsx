@@ -1,5 +1,5 @@
 
-import { useTranslator } from './useTranslator'
+import { useTranslator } from './hooks/useTranslator'
 import { supportedLanguages } from '../../shared/utils/countryLanguages'
 import { quickPhrases } from '../../shared/data/quickPhrases'
 import { DashboardLayout } from '../../components/layout/DashboardLayout'

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { DashboardLayout, Breadcrumbs } from '../../components/layout'
 import { Modal } from '../../components/ui'
-import { getTrips } from '../../shared/services'
-import { useExpenses } from './useExpenses'
+import { getTrips } from '../trips/api/tripApi.js'
+import { useExpenses } from './hooks/useExpenses'
 import { ExpenseSummary, ExpenseList, ExpenseForm } from './'
 import { DollarSign, Plus } from 'lucide-react'
 

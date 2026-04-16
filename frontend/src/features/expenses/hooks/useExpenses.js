@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
-import { getExpenses, addExpense, deleteExpense, getExpenseSummary } from '../../shared/services'
+import { getExpenses, addExpense, deleteExpense, getExpenseSummary } from '../api/expenseApi'
 
 export function useExpenses(selectedTripId) {
     const [expenses, setExpenses] = useState([])
@@ -42,7 +42,6 @@ export function useExpenses(selectedTripId) {
         setSubmitting(true)
         try {
             await addExpense({ ...formData, trip_id: selectedTripId })
-            // Refresh expenses after adding
             try {
                 const [expData, sumData] = await Promise.all([
                     getExpenses(selectedTripId),
@@ -65,7 +64,6 @@ export function useExpenses(selectedTripId) {
     const removeExpense = useCallback(async (id) => {
         try {
             await deleteExpense(id)
-            // Refresh expenses after deleting
             try {
                 const [expData, sumData] = await Promise.all([
                     getExpenses(selectedTripId),

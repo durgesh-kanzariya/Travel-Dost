@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom';
-import { getChecklistItemsByTrip, addChecklistItem, updateChecklistItem, deleteChecklistItem } from './checklistService.js';
-import { getTrips } from '../../shared/services/tripService.js';
+import { getChecklistItemsByTrip, addChecklistItem, updateChecklistItem, deleteChecklistItem } from './api/checklistApi.js';
+import { getTrips } from '../trips/api/tripApi.js';
 import { TripSelector } from '../trips';
 import { DashboardLayout } from '../../components/layout/DashboardLayout';
 import { Breadcrumbs } from '../../components/layout/Breadcrumbs';

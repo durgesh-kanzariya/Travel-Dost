@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { api } from '../services'
+import api from '../../../shared/services/api'
 
 const CURRENCIES = [
     { code: 'USD', name: 'US Dollar', flag: '🇺🇸' },

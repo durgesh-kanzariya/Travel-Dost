@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
-import { translateText, getCachedLocation, detectAndCacheLocation } from '../../shared/services'
-import { countryToLanguage, supportedLanguages } from '../../shared/utils/countryLanguages'
+import { translateText, getCachedLocation, detectAndCacheLocation } from '../../../shared/services'
+import { countryToLanguage, supportedLanguages } from '../../../shared/utils/countryLanguages'
 
 export function useTranslator() {
     const [inputText, setInputText] = useState('')
@@ -14,7 +14,6 @@ export function useTranslator() {
         return stored ? JSON.parse(stored) : {}
     })
 
-    // Effect 1: Set source language from user profile
     useEffect(() => {
         const storedUser = localStorage.getItem('user')
         if (storedUser) {
@@ -27,7 +26,6 @@ export function useTranslator() {
         }
     }, [])
 
-    // Effect 2: Detect location and set target language
     useEffect(() => {
         let cancelled = false
 
@@ -85,7 +83,7 @@ export function useTranslator() {
 
         setLoading(true)
         try {
-            const data = await translateText(textToTranslate, sourceLang, targetLang);
+            const data = await translateText(textToTranslate, sourceLang, targetLang)
             if (data.translatedText) {
                 setTranslatedText(data.translatedText)
                 const newCache = { ...cache, [cacheKey]: data.translatedText }

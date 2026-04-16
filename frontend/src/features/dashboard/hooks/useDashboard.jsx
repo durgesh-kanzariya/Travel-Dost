@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
-import { getGuideByCountry, getUpcomingTrip, detectAndCacheLocation } from '../services'
+import { getUpcomingTrip } from '../../trips/api/tripApi.js'
+import { detectAndCacheLocation } from '../../emergency/api/locationApi.js'
+import { getGuideByCountry } from '../../guides/api/guideApi.js'
 
 export function useDashboard() {
     const [location, setLocation] = useState({
@@ -33,7 +35,7 @@ export function useDashboard() {
 
     const fetchGuideData = useCallback(async (countryName) => {
         try {
-            const data = await getGuideByCountry(countryName);
+            const data = await getGuideByCountry(countryName)
             const formattedData = {
                 emergency: {
                     police: data.police_number,
@@ -48,7 +50,6 @@ export function useDashboard() {
         }
     }, [])
 
-    // Load location and guide data on mount
     useEffect(() => {
         let cancelled = false
 
@@ -102,7 +103,6 @@ export function useDashboard() {
         return () => { cancelled = true }
     }, [fetchUpcomingTrip, fetchGuideData])
 
-    // Manual location refresh function (callable from components)
     const refreshLocation = useCallback(async (forceRefresh = false) => {
         let cancelled = false
         setLoading(true)
@@ -154,7 +154,7 @@ export function useDashboard() {
         return () => { cancelled = true }
     }, [fetchGuideData])
 
-    return {
+return {
         location,
         zoom,
         loading,
@@ -163,5 +163,5 @@ export function useDashboard() {
         upcomingTrip,
         tripEmergencyData,
         refreshLocation
-    }
+    };
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
-import { registerUser } from '../../shared/services/authService';
-import { supportedLanguages } from '../../shared/utils/countryLanguages';
+import { registerUser } from './api/authApi'
+import { supportedLanguages } from '../../shared/utils/countryLanguages'
 import { Mail, Lock, ArrowRight, User, Languages, ArrowLeft } from 'lucide-react'
 
 export function SignUpPage() {

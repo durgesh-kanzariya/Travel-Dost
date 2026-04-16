@@ -1,6 +1,6 @@
 import { ArrowRightLeft, RefreshCw, TrendingUp } from 'lucide-react'
 import { DashboardLayout, Breadcrumbs } from '../../components/layout'
-import { useCurrency } from '../../shared/hooks'
+import { useCurrency } from './hooks/useCurrency'
 
 export function CurrencyConverterPage() {
   const {

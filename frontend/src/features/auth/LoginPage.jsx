@@ -1,7 +1,7 @@
 
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
-import { loginUser } from '../../shared/services/authService';
+import { loginUser } from './api/authApi';
 import { Mail, Lock, ArrowRight, ArrowLeft } from 'lucide-react' // <--- Added ArrowLeft
 
 export function LoginPage() {

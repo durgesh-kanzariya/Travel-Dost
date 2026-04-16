@@ -3,8 +3,8 @@ import { Plus, Plane } from 'lucide-react'
 import { DashboardLayout, Breadcrumbs } from '../../components/layout'
 import { TripCard, TripForm, DeleteTripModal } from './'
 import { Modal } from '../../components/ui'
-import { useTrips } from './useTrips'
-import { getAllGuides } from '../../shared/services'
+import { useTrips } from './hooks/useTrips'
+import { getAllGuides } from '../guides/api/guideApi.js'
 
 export function TripsPage() {
   const { trips, loading, addTrip, editTrip, removeTrip, getChecklistItemCount } = useTrips()

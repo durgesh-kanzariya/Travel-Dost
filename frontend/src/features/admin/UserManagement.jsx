@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getAllUsers, deleteUser } from '../../shared/services';
+import { getAllUsers, deleteUser } from './api/adminApi.js';
 import { AdminLayout } from '../../components/layout';
 import { Search, Shield, User, Trash2 } from 'lucide-react';
 

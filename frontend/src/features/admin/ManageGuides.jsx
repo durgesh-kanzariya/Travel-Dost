@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getAllGuidesAdmin, createGuide, updateGuide, deleteGuide } from '../../shared/services';
+import { getAllGuidesAdmin, createGuide, updateGuide, deleteGuide } from './api/adminApi.js';
 import { AdminLayout } from '../../components/layout';
 import { GuideFormModal } from '../guides';
 import { Plus, Search, MapPin, Pencil, Trash2 } from 'lucide-react';
